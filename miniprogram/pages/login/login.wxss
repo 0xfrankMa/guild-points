@@ -2,65 +2,105 @@
   min-height: 100vh;
   padding: 60rpx 40rpx;
   background: linear-gradient(180deg, #FFD93D 0%, #F5A623 40%, #FF8C00 100%);
+  position: relative;
+  overflow: hidden;
 }
+
+/* Floating decorative bubbles */
+.deco-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+}
+
+.b1 { width: 200rpx; height: 200rpx; top: -40rpx; right: -60rpx; }
+.b2 { width: 120rpx; height: 120rpx; top: 300rpx; left: -40rpx; }
+.b3 { width: 80rpx; height: 80rpx; bottom: 200rpx; right: 40rpx; }
 
 .logo-section {
   text-align: center;
-  margin-bottom: 60rpx;
+  margin-bottom: 50rpx;
+  position: relative;
+  z-index: 1;
 }
 
-.logo-icon {
-  font-size: 160rpx;
+.capybara-avatar {
+  position: relative;
+  display: inline-block;
+  width: 180rpx;
+  height: 180rpx;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  line-height: 180rpx;
   margin-bottom: 20rpx;
-  filter: drop-shadow(0 4rpx 8rpx rgba(0,0,0,0.2));
+  border: 4rpx solid rgba(255,255,255,0.4);
+  box-shadow: 0 8rpx 32rpx rgba(139,105,20,0.2);
+}
+
+.capybara-face {
+  font-size: 100rpx;
+}
+
+.capybara-crown {
+  position: absolute;
+  top: -30rpx;
+  right: -10rpx;
+  font-size: 50rpx;
+  transform: rotate(15deg);
 }
 
 .app-title {
   display: block;
-  font-size: 60rpx;
+  font-size: 64rpx;
   font-weight: bold;
   color: #4A3728;
-  text-shadow: 2rpx 2rpx 0 rgba(255,255,255,0.3);
-  margin-bottom: 10rpx;
+  text-shadow: 2rpx 2rpx 0 rgba(255,255,255,0.4);
+  margin-bottom: 12rpx;
+  letter-spacing: 4rpx;
 }
 
 .app-subtitle {
   display: block;
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #6B4E2A;
+  letter-spacing: 2rpx;
 }
 
 .tab-bar {
   display: flex;
-  background: rgba(255,255,255,0.25);
-  border-radius: 20rpx;
-  margin-bottom: 40rpx;
+  background: rgba(255,255,255,0.2);
+  border-radius: 24rpx;
+  margin-bottom: 36rpx;
   padding: 6rpx;
   border: 2rpx solid rgba(255,255,255,0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .tab {
   flex: 1;
   text-align: center;
-  padding: 20rpx;
+  padding: 22rpx;
   color: #6B4E2A;
-  border-radius: 16rpx;
-  font-size: 30rpx;
+  border-radius: 20rpx;
+  font-size: 28rpx;
 }
 
 .tab.active {
   background: #fff;
   color: #D4850D;
   font-weight: bold;
-  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.1);
 }
 
 .form {
   background: #FFFDF5;
-  border-radius: 24rpx;
-  padding: 40rpx;
+  border-radius: 28rpx;
+  padding: 44rpx;
   border: 3rpx solid #F0D68A;
-  box-shadow: 0 8rpx 24rpx rgba(139,105,20,0.15);
+  box-shadow: 0 12rpx 32rpx rgba(139,105,20,0.2);
+  position: relative;
+  z-index: 1;
 }
 
 .input-group {
@@ -78,7 +118,7 @@
 .input-group input {
   border: 2rpx solid #F0D68A;
   border-radius: 16rpx;
-  padding: 20rpx;
+  padding: 22rpx;
   font-size: 30rpx;
   background: #FFF8E7;
 }
@@ -89,7 +129,18 @@
   border-radius: 50rpx !important;
   font-size: 32rpx !important;
   font-weight: bold !important;
-  margin-top: 20rpx;
-  box-shadow: 0 6rpx 16rpx rgba(245,166,35,0.4) !important;
+  margin-top: 24rpx;
+  box-shadow: 0 6rpx 20rpx rgba(245,166,35,0.5) !important;
   border: 2rpx solid #D4850D !important;
+  letter-spacing: 2rpx;
+}
+
+.footer-deco {
+  text-align: center;
+  margin-top: 40rpx;
+  font-size: 32rpx;
+  opacity: 0.5;
+  letter-spacing: 8rpx;
+  position: relative;
+  z-index: 1;
 }

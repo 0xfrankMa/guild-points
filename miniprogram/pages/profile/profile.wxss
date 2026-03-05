@@ -2,21 +2,34 @@
 
 .user-card {
   background: linear-gradient(135deg, #FFD93D 0%, #F5A623 50%, #FF8C00 100%);
-  border-radius: 24rpx;
+  border-radius: 28rpx;
   padding: 36rpx;
   color: #4A3728;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 20rpx;
   border: 3rpx solid #D4850D;
-  box-shadow: 0 8rpx 24rpx rgba(245,166,35,0.3);
+  box-shadow: 0 8rpx 28rpx rgba(245,166,35,0.3);
 }
 
+.user-avatar {
+  font-size: 64rpx;
+  width: 88rpx;
+  height: 88rpx;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 88rpx;
+  margin-right: 20rpx;
+  border: 3rpx solid rgba(255,255,255,0.4);
+}
+
+.user-info { flex: 1; }
 .user-name { display: block; font-size: 36rpx; font-weight: bold; }
 .user-role { font-size: 24rpx; opacity: 0.7; }
-.points-num { display: block; font-size: 56rpx; font-weight: bold; text-align: right; text-shadow: 2rpx 2rpx 0 rgba(255,255,255,0.3); }
-.points-label { font-size: 24rpx; opacity: 0.7; text-align: right; display: block; }
+.user-points { text-align: right; }
+.points-num { display: block; font-size: 52rpx; font-weight: bold; text-shadow: 2rpx 2rpx 0 rgba(255,255,255,0.3); }
+.points-label { font-size: 22rpx; opacity: 0.7; }
 
 .stats-row { display: flex; gap: 16rpx; margin-bottom: 20rpx; }
 
@@ -36,42 +49,44 @@
 .section-header { margin-top: 20rpx; margin-bottom: 16rpx; }
 .section-title { font-size: 30rpx; font-weight: bold; color: #4A3728; }
 
-.rank-list { background: #FFFDF5; border-radius: 20rpx; overflow: hidden; border: 2rpx solid #F0D68A; }
+.rank-list { background: #FFFDF5; border-radius: 24rpx; overflow: hidden; border: 2rpx solid #F0D68A; }
 
 .rank-item {
   display: flex;
   align-items: center;
-  padding: 20rpx 24rpx;
+  padding: 22rpx 24rpx;
   border-bottom: 2rpx solid #F0D68A;
 }
 
-.rank-num {
-  width: 48rpx;
-  font-size: 28rpx;
+.rank-item:last-child { border-bottom: none; }
+
+.rank-medal {
+  width: 56rpx;
+  font-size: 32rpx;
+  text-align: center;
   font-weight: bold;
   color: #8B6914;
 }
-
-.rank-item:nth-child(1) .rank-num { color: #FFD700; font-size: 32rpx; }
-.rank-item:nth-child(2) .rank-num { color: #C0C0C0; font-size: 32rpx; }
-.rank-item:nth-child(3) .rank-num { color: #CD7F32; font-size: 32rpx; }
 
 .rank-name { flex: 1; font-size: 28rpx; color: #4A3728; }
 .rank-points { font-size: 28rpx; color: #FF8C00; font-weight: 500; }
 
 .guild-info {
   background: #FFFDF5;
-  border-radius: 20rpx;
-  padding: 24rpx;
+  border-radius: 24rpx;
+  padding: 28rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 2rpx solid #F0D68A;
 }
 
+.guild-code { color: #4A3728; font-size: 28rpx; }
+
 .btn-copy {
   background: linear-gradient(135deg, #FFD93D, #F5A623) !important;
   color: #4A3728 !important;
   font-weight: bold !important;
   border-radius: 30rpx !important;
+  border: 2rpx solid #D4850D !important;
 }
