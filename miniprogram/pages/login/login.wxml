@@ -1,0 +1,32 @@
+<view class="login-page">
+  <view class="logo-section">
+    <view class="logo-icon">⚔️</view>
+    <text class="app-title">工会积分</text>
+    <text class="app-subtitle">任务 · 积分 · 奖励</text>
+  </view>
+
+  <view class="tab-bar">
+    <view class="tab {{tab === 'join' ? 'active' : ''}}" bindtap="switchTab" data-tab="join">加入工会</view>
+    <view class="tab {{tab === 'create' ? 'active' : ''}}" bindtap="switchTab" data-tab="create">创建工会</view>
+  </view>
+
+  <view class="form" wx:if="{{tab === 'join'}}">
+    <view class="input-group">
+      <text class="label">邀请码</text>
+      <input placeholder="输入工会邀请码" value="{{inviteCode}}" bindinput="onInviteCodeInput" />
+    </view>
+    <view class="input-group">
+      <text class="label">游戏昵称</text>
+      <input placeholder="输入你的游戏昵称" value="{{nickname}}" bindinput="onNicknameInput" />
+    </view>
+    <button class="btn-primary" bindtap="joinGuild" loading="{{loading}}">加入工会</button>
+  </view>
+
+  <view class="form" wx:if="{{tab === 'create'}}">
+    <view class="input-group">
+      <text class="label">工会名称</text>
+      <input placeholder="输入工会名称" value="{{guildName}}" bindinput="onGuildNameInput" />
+    </view>
+    <button class="btn-primary" bindtap="createGuild" loading="{{loading}}">创建工会</button>
+  </view>
+</view>

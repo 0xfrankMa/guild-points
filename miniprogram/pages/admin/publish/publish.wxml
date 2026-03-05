@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="form-card">
+    <view class="input-group">
+      <text class="label">任务标题 *</text>
+      <input placeholder="如：完成XX副本3次" value="{{title}}" bindinput="onInput" data-field="title" />
+    </view>
+    <view class="input-group">
+      <text class="label">任务描述</text>
+      <textarea placeholder="详细说明任务要求（可选）" value="{{description}}" bindinput="onInput" data-field="description" />
+    </view>
+    <view class="input-group">
+      <text class="label">奖励积分 *</text>
+      <input type="number" placeholder="输入积分数" value="{{points}}" bindinput="onInput" data-field="points" />
+    </view>
+    <view class="input-group">
+      <text class="label">验证方式</text>
+      <view class="radio-group">
+        <view class="radio-item {{verifyType === 'self_check' ? 'active' : ''}}" bindtap="setVerifyType" data-type="self_check">
+          自助打卡
+        </view>
+        <view class="radio-item {{verifyType === 'screenshot' ? 'active' : ''}}" bindtap="setVerifyType" data-type="screenshot">
+          上传截图
+        </view>
+      </view>
+    </view>
+    <view class="input-group">
+      <text class="label">每人每天最多完成次数</text>
+      <input type="number" placeholder="默认1次" value="{{maxCompletions}}" bindinput="onInput" data-field="maxCompletions" />
+    </view>
+    <view class="input-group">
+      <text class="label">每日重置</text>
+      <switch checked="{{daily}}" bindchange="toggleDaily" color="#1a73e8" />
+    </view>
+    <button class="btn-publish" bindtap="publish" loading="{{loading}}">发布任务</button>
+  </view>
+</view>

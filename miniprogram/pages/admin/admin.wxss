@@ -1,0 +1,27 @@
+.container { padding: 20rpx; }
+
+.menu-item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.menu-icon { font-size: 48rpx; margin-right: 24rpx; }
+.menu-title { display: block; font-size: 30rpx; font-weight: 500; }
+.menu-desc { font-size: 24rpx; color: #999; }
+
+.badge {
+  position: absolute;
+  right: 24rpx;
+  background: #f44336;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+  min-width: 36rpx;
+  text-align: center;
+}

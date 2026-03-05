@@ -1,0 +1,70 @@
+.container { padding: 20rpx; }
+
+.user-card {
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  border-radius: 20rpx;
+  padding: 36rpx;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.user-name { display: block; font-size: 36rpx; font-weight: bold; }
+.user-role { font-size: 24rpx; opacity: 0.8; }
+.points-num { display: block; font-size: 56rpx; font-weight: bold; text-align: right; }
+.points-label { font-size: 24rpx; opacity: 0.8; text-align: right; display: block; }
+
+.stats-row { display: flex; gap: 16rpx; margin-bottom: 20rpx; }
+
+.stat-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  text-align: center;
+}
+
+.stat-num { display: block; font-size: 40rpx; font-weight: bold; color: #1a73e8; }
+.stat-label { font-size: 24rpx; color: #999; }
+
+.section-header { margin-top: 20rpx; margin-bottom: 16rpx; }
+.section-title { font-size: 30rpx; font-weight: bold; }
+
+.rank-list { background: #fff; border-radius: 16rpx; overflow: hidden; }
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.rank-num {
+  width: 48rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #999;
+}
+
+.rank-item:nth-child(1) .rank-num { color: #ffd700; }
+.rank-item:nth-child(2) .rank-num { color: #c0c0c0; }
+.rank-item:nth-child(3) .rank-num { color: #cd7f32; }
+
+.rank-name { flex: 1; font-size: 28rpx; }
+.rank-points { font-size: 28rpx; color: #f57c00; font-weight: 500; }
+
+.guild-info {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-copy {
+  background: #1a73e8 !important;
+  color: #fff !important;
+}

@@ -8,8 +8,19 @@ App({
       env: 'YOUR_ENV_ID',
       traceUser: true
     })
+    this.checkLogin()
   },
   globalData: {
     userInfo: null
+  },
+  async checkLogin() {
+    try {
+      const res = await wx.cloud.callFunction({ name: 'user', data: { action: 'login' } })
+      if (res.result.success && !res.result.isNew && res.result.user) {
+        this.globalData.userInfo = res.result.user
+      }
+    } catch (e) {
+      console.error('login check failed', e)
+    }
   }
 })

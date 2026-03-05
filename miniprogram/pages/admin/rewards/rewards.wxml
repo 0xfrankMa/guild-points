@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="form-card">
+    <text class="form-title">添加商品</text>
+    <view class="input-row">
+      <input placeholder="商品名称" value="{{name}}" bindinput="onInput" data-field="name" />
+      <input placeholder="积分" type="number" value="{{cost}}" bindinput="onInput" data-field="cost" class="short" />
+    </view>
+    <view class="input-row">
+      <view class="radio-group">
+        <view class="radio-item {{type === 'cash' ? 'active' : ''}}" bindtap="setType" data-type="cash">现金</view>
+        <view class="radio-item {{type === 'game_item' ? 'active' : ''}}" bindtap="setType" data-type="game_item">游戏物品</view>
+      </view>
+      <input placeholder="库存(-1无限)" type="number" value="{{stock}}" bindinput="onInput" data-field="stock" class="short" />
+    </view>
+    <button size="mini" class="btn-add" bindtap="addReward">添加</button>
+  </view>
+
+  <view class="section-header" wx:if="{{exchanges.length > 0}}">
+    <text class="section-title">待发放 ({{exchanges.length}})</text>
+  </view>
+  <view class="ex-card" wx:for="{{exchanges}}" wx:key="_id">
+    <view>
+      <text class="ex-user">{{item.user_nickname}}</text>
+      <text class="ex-reward">兑换: {{item.reward_name}}</text>
+    </view>
+    <button size="mini" class="btn-fulfill" bindtap="fulfill" data-id="{{item._id}}">已发放</button>
+  </view>
+
+  <view class="section-header">
+    <text class="section-title">商品列表</text>
+  </view>
+  <view class="reward-item" wx:for="{{rewards}}" wx:key="_id">
+    <view>
+      <text class="r-name">{{item.name}}</text>
+      <text class="r-info">{{item.cost}}积分 | 库存:{{item.stock === -1 ? '无限' : item.stock}}</text>
+    </view>
+    <view class="r-actions">
+      <button size="mini" bindtap="toggleRewardStatus" data-id="{{item._id}}" data-status="{{item.status}}">
+        {{item.status === 'active' ? '下架' : '上架'}}
+      </button>
+    </view>
+  </view>
+</view>

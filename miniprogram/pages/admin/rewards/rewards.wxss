@@ -1,0 +1,39 @@
+.container { padding: 20rpx; }
+
+.form-card {
+  background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 20rpx;
+}
+.form-title { display: block; font-size: 30rpx; font-weight: bold; margin-bottom: 16rpx; }
+
+.input-row { display: flex; gap: 12rpx; margin-bottom: 12rpx; }
+.input-row input {
+  flex: 1; border: 2rpx solid #e0e0e0; border-radius: 8rpx; padding: 16rpx; font-size: 28rpx;
+}
+.input-row .short { max-width: 200rpx; }
+
+.radio-group { display: flex; gap: 8rpx; flex: 1; }
+.radio-item {
+  flex: 1; text-align: center; padding: 16rpx; border: 2rpx solid #e0e0e0;
+  border-radius: 8rpx; font-size: 26rpx;
+}
+.radio-item.active { border-color: #1a73e8; color: #1a73e8; background: #e3f2fd; }
+
+.btn-add { background: #1a73e8 !important; color: #fff !important; margin-top: 12rpx; }
+
+.section-header { margin: 20rpx 0 12rpx; }
+.section-title { font-size: 30rpx; font-weight: bold; }
+
+.ex-card {
+  background: #fff; border-radius: 12rpx; padding: 20rpx;
+  margin-bottom: 12rpx; display: flex; justify-content: space-between; align-items: center;
+}
+.ex-user { font-weight: 500; margin-right: 12rpx; }
+.ex-reward { font-size: 26rpx; color: #666; }
+.btn-fulfill { background: #4caf50 !important; color: #fff !important; }
+
+.reward-item {
+  background: #fff; border-radius: 12rpx; padding: 20rpx;
+  margin-bottom: 12rpx; display: flex; justify-content: space-between; align-items: center;
+}
+.r-name { display: block; font-weight: 500; }
+.r-info { font-size: 24rpx; color: #999; }

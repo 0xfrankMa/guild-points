@@ -1,0 +1,96 @@
+.container { padding: 20rpx; }
+
+.detail-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 36rpx;
+  margin-bottom: 20rpx;
+}
+
+.detail-title { display: block; font-size: 36rpx; font-weight: bold; margin-bottom: 16rpx; }
+.detail-desc { display: block; font-size: 28rpx; color: #666; margin-bottom: 24rpx; line-height: 1.6; }
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.detail-label { color: #666; }
+.detail-value { font-weight: 500; }
+.detail-value.points { color: #f57c00; font-size: 32rpx; }
+
+.submit-section { margin-top: 20rpx; }
+
+.screenshot-upload {
+  background: #fff;
+  border: 2rpx dashed #ccc;
+  border-radius: 16rpx;
+  padding: 60rpx;
+  text-align: center;
+  color: #999;
+  margin-bottom: 20rpx;
+}
+
+.upload-icon { display: block; font-size: 64rpx; margin-bottom: 12rpx; }
+
+.screenshot-preview {
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+.screenshot-preview image {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 16rpx;
+}
+
+.change-text {
+  position: absolute;
+  bottom: 16rpx;
+  right: 16rpx;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 8rpx 20rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.btn-submit {
+  background: #1a73e8 !important;
+  color: #fff !important;
+  border-radius: 12rpx !important;
+  font-size: 32rpx !important;
+}
+
+.done-banner {
+  background: #e8f5e9;
+  color: #2e7d32;
+  text-align: center;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+
+.section-header { margin-top: 30rpx; margin-bottom: 16rpx; }
+.section-title { font-size: 30rpx; font-weight: bold; }
+
+.submission-item {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 12rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sub-time { font-size: 24rpx; color: #999; }
+.sub-status { font-size: 24rpx; }
+.sub-status.approved { color: #4caf50; }
+.sub-status.pending { color: #ff9800; }
+.sub-status.rejected { color: #f44336; }
+.sub-reason { width: 100%; font-size: 24rpx; color: #f44336; margin-top: 8rpx; }

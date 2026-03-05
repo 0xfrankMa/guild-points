@@ -1,0 +1,42 @@
+.container { padding: 20rpx; }
+
+.form-card { background: #fff; border-radius: 20rpx; padding: 36rpx; }
+
+.input-group { margin-bottom: 28rpx; }
+.label { display: block; font-size: 26rpx; color: #666; margin-bottom: 12rpx; }
+
+.input-group input, .input-group textarea {
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  font-size: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-group textarea { height: 160rpx; }
+
+.radio-group { display: flex; gap: 16rpx; }
+
+.radio-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.radio-item.active {
+  border-color: #1a73e8;
+  color: #1a73e8;
+  background: #e3f2fd;
+}
+
+.btn-publish {
+  background: #1a73e8 !important;
+  color: #fff !important;
+  border-radius: 12rpx !important;
+  margin-top: 20rpx;
+}

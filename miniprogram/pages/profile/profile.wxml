@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="user-card">
+    <view class="user-info">
+      <text class="user-name">{{userInfo.nickname}}</text>
+      <text class="user-role">{{roleLabel}}</text>
+    </view>
+    <view class="user-points">
+      <text class="points-num">{{userInfo.points || 0}}</text>
+      <text class="points-label">积分</text>
+    </view>
+  </view>
+
+  <view class="stats-row">
+    <view class="stat-card">
+      <text class="stat-num">{{userInfo.total_earned || 0}}</text>
+      <text class="stat-label">累计获得</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-num">{{userInfo.total_spent || 0}}</text>
+      <text class="stat-label">累计消费</text>
+    </view>
+  </view>
+
+  <view class="section-header">
+    <text class="section-title">积分排行</text>
+  </view>
+  <view class="rank-list">
+    <view class="rank-item" wx:for="{{rankings}}" wx:key="_id">
+      <text class="rank-num">{{index + 1}}</text>
+      <text class="rank-name">{{item.nickname}}</text>
+      <text class="rank-points">{{item.total_earned}}</text>
+    </view>
+  </view>
+
+  <view class="section-header" wx:if="{{inviteCode}}">
+    <text class="section-title">工会信息</text>
+  </view>
+  <view class="guild-info" wx:if="{{inviteCode}}">
+    <text>邀请码：{{inviteCode}}</text>
+    <button size="mini" class="btn-copy" bindtap="copyInviteCode">复制</button>
+  </view>
+</view>

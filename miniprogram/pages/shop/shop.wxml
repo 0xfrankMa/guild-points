@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="my-points">
+    <text>我的积分：</text>
+    <text class="points-num">{{myPoints}}</text>
+  </view>
+
+  <view class="reward-list">
+    <view class="reward-card" wx:for="{{rewards}}" wx:key="_id">
+      <view class="reward-info">
+        <text class="reward-name">{{item.name}}</text>
+        <text class="reward-type">{{item.type === 'cash' ? '💰 现金' : '🎮 游戏物品'}}</text>
+        <text class="reward-stock" wx:if="{{item.stock >= 0}}">库存: {{item.stock}}</text>
+      </view>
+      <view class="reward-action">
+        <text class="reward-cost">{{item.cost}} 积分</text>
+        <button class="btn-exchange"
+                size="mini"
+                disabled="{{myPoints < item.cost || item.status === 'sold_out'}}"
+                bindtap="exchangeReward"
+                data-id="{{item._id}}"
+                data-name="{{item.name}}"
+                data-cost="{{item.cost}}">
+          {{item.status === 'sold_out' ? '已售罄' : '兑换'}}
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{rewards.length === 0}}">
+    <text>商城暂无商品~</text>
+  </view>
+
+  <view class="section-header" wx:if="{{exchanges.length > 0}}">
+    <text class="section-title">我的兑换记录</text>
+  </view>
+  <view class="exchange-item" wx:for="{{exchanges}}" wx:key="_id">
+    <text class="ex-name">{{item.reward_name}}</text>
+    <text class="ex-cost">-{{item.cost}}积分</text>
+    <text class="ex-status {{item.status}}">
+      {{item.status === 'pending' ? '待发放' : item.status === 'fulfilled' ? '已发放' : '已取消'}}
+    </text>
+  </view>
+</view>

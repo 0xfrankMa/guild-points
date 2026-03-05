@@ -1,6 +1,15 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/login/login",
+    "pages/task-detail/task-detail",
+    "pages/shop/shop",
+    "pages/profile/profile",
+    "pages/admin/admin",
+    "pages/admin/publish/publish",
+    "pages/admin/review/review",
+    "pages/admin/rewards/rewards",
+    "pages/admin/members/members"
   ],
   "window": {
     "backgroundTextStyle": "light",

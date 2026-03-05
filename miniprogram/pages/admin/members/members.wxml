@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="member-card" wx:for="{{members}}" wx:key="_id">
+    <view class="member-info">
+      <text class="member-name">{{item.nickname}}</text>
+      <text class="member-role {{item.role}}">{{item.role === 'master' ? '会长' : item.role === 'admin' ? '管理员' : '成员'}}</text>
+    </view>
+    <view class="member-stats">
+      <text>积分: {{item.points}} | 累计: {{item.total_earned}}</text>
+    </view>
+    <view class="member-actions" wx:if="{{item.role !== 'master'}}">
+      <button size="mini" bindtap="toggleAdmin" data-id="{{item._id}}" data-role="{{item.role}}">
+        {{item.role === 'admin' ? '取消管理' : '设为管理'}}
+      </button>
+      <button size="mini" class="btn-danger" bindtap="removeMember" data-id="{{item._id}}" data-name="{{item.nickname}}">
+        移除
+      </button>
+    </view>
+  </view>
+</view>

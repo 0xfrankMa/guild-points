@@ -1,3 +1,4 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "工会积分",
+  "enablePullDownRefresh": true
 }

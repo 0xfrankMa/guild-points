@@ -1,0 +1,52 @@
+<view class="container" wx:if="{{task}}">
+  <view class="detail-card">
+    <text class="detail-title">{{task.title}}</text>
+    <text class="detail-desc" wx:if="{{task.description}}">{{task.description}}</text>
+    <view class="detail-row">
+      <text class="detail-label">奖励积分</text>
+      <text class="detail-value points">+{{task.points}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">验证方式</text>
+      <text class="detail-value">{{task.verify_type === 'screenshot' ? '上传截图' : '自助打卡'}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">今日完成</text>
+      <text class="detail-value">{{task.my_submissions_today || 0}} / {{task.max_completions}}</text>
+    </view>
+  </view>
+
+  <view class="submit-section" wx:if="{{task.can_submit}}">
+    <view class="screenshot-section" wx:if="{{task.verify_type === 'screenshot'}}">
+      <view class="screenshot-preview" wx:if="{{screenshotPath}}" bindtap="chooseImage">
+        <image src="{{screenshotPath}}" mode="aspectFit" />
+        <text class="change-text">点击更换</text>
+      </view>
+      <view class="screenshot-upload" wx:else bindtap="chooseImage">
+        <text class="upload-icon">📷</text>
+        <text>点击上传截图</text>
+      </view>
+    </view>
+
+    <button class="btn-submit" bindtap="submitTask" loading="{{submitting}}">
+      {{task.verify_type === 'screenshot' ? '提交截图' : '完成打卡'}}
+    </button>
+  </view>
+
+  <view class="done-banner" wx:elif="{{task.my_submissions_today >= task.max_completions}}">
+    <text>今日任务已完成 ✓</text>
+  </view>
+
+  <view class="section-header" wx:if="{{submissions.length > 0}}">
+    <text class="section-title">提交记录</text>
+  </view>
+  <view class="submission-item" wx:for="{{submissions}}" wx:key="_id">
+    <text class="sub-time">{{item.created_at}}</text>
+    <text class="sub-status {{item.status}}">
+      {{item.status === 'pending' ? '待审核' : item.status === 'approved' ? '已通过' : '已拒绝'}}
+    </text>
+    <text class="sub-reason" wx:if="{{item.status === 'rejected' && item.reject_reason}}">
+      原因：{{item.reject_reason}}
+    </text>
+  </view>
+</view>

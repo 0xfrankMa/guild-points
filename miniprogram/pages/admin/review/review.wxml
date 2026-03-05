@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="batch-bar" wx:if="{{submissions.length > 0}}">
+    <view class="select-all" bindtap="toggleSelectAll">
+      <text>{{selectedAll ? '☑' : '☐'}} 全选</text>
+    </view>
+    <button size="mini" class="btn-batch" bindtap="batchApprove" disabled="{{selectedIds.length === 0}}">
+      批量通过 ({{selectedIds.length}})
+    </button>
+  </view>
+
+  <view class="submission-list">
+    <view class="sub-card" wx:for="{{submissions}}" wx:key="_id">
+      <view class="sub-check" bindtap="toggleSelect" data-id="{{item._id}}">
+        <text>{{item.selected ? '☑' : '☐'}}</text>
+      </view>
+      <view class="sub-content">
+        <view class="sub-header">
+          <text class="sub-user">{{item.user_nickname}}</text>
+          <text class="sub-task">{{item.task_title}}</text>
+        </view>
+        <text class="sub-points">+{{item.task_points}}积分</text>
+        <image wx:if="{{item.screenshot_id}}" src="{{item.screenshot_id}}"
+               mode="aspectFit" class="sub-screenshot"
+               bindtap="previewImage" data-src="{{item.screenshot_id}}" />
+        <view class="sub-actions">
+          <button size="mini" class="btn-approve" bindtap="approve" data-id="{{item._id}}">通过</button>
+          <button size="mini" class="btn-reject" bindtap="reject" data-id="{{item._id}}">拒绝</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{submissions.length === 0}}">
+    <text>没有待审核的提交~</text>
+  </view>
+</view>

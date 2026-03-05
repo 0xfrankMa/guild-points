@@ -1,3 +1,60 @@
 <view class="container">
-  <text>工会积分系统 - 加载中...</text>
+  <view class="points-card">
+    <view class="points-main">
+      <text class="points-label">我的积分</text>
+      <text class="points-value">{{userInfo.points || 0}}</text>
+    </view>
+    <view class="points-stats">
+      <view class="stat">
+        <text class="stat-value">{{userInfo.total_earned || 0}}</text>
+        <text class="stat-label">累计获得</text>
+      </view>
+      <view class="stat">
+        <text class="stat-value">{{userInfo.total_spent || 0}}</text>
+        <text class="stat-label">累计消费</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="quick-actions">
+    <view class="action-btn" bindtap="goToShop">
+      <text class="action-icon">🛒</text>
+      <text>商城</text>
+    </view>
+    <view class="action-btn" bindtap="goToProfile">
+      <text class="action-icon">👤</text>
+      <text>我的</text>
+    </view>
+    <view class="action-btn" bindtap="goToAdmin" wx:if="{{isAdmin}}">
+      <text class="action-icon">⚙️</text>
+      <text>管理</text>
+    </view>
+  </view>
+
+  <view class="section-header">
+    <text class="section-title">今日任务</text>
+    <text class="task-count">{{tasks.length}} 个任务</text>
+  </view>
+
+  <view class="task-list">
+    <view class="task-card {{item.can_submit ? '' : 'completed'}}"
+          wx:for="{{tasks}}" wx:key="_id"
+          bindtap="goToTaskDetail" data-id="{{item._id}}">
+      <view class="task-header">
+        <text class="task-title">{{item.title}}</text>
+        <text class="task-points">+{{item.points}}</text>
+      </view>
+      <view class="task-meta">
+        <text class="verify-tag {{item.verify_type}}">
+          {{item.verify_type === 'screenshot' ? '需截图' : '打卡'}}
+        </text>
+        <text class="task-status" wx:if="{{!item.can_submit}}">已完成</text>
+        <text class="task-status pending" wx:elif="{{item.my_statuses.length > 0 && item.my_statuses[item.my_statuses.length - 1] === 'pending'}}">审核中</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{tasks.length === 0 && !loading}}">
+    <text>今天还没有任务哦~</text>
+  </view>
 </view>
