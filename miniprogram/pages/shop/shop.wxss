@@ -1,55 +1,64 @@
 .container { padding: 20rpx; }
 
 .my-points {
-  background: #fff;
-  border-radius: 16rpx;
-  padding: 24rpx;
+  background: linear-gradient(135deg, #FFD93D 0%, #F5A623 100%);
+  border-radius: 20rpx;
+  padding: 24rpx 32rpx;
   margin-bottom: 20rpx;
   font-size: 30rpx;
+  color: #4A3728;
+  border: 2rpx solid #D4850D;
+  box-shadow: 0 4rpx 12rpx rgba(245,166,35,0.3);
 }
 
-.points-num { font-weight: bold; color: #f57c00; font-size: 36rpx; }
+.points-num { font-weight: bold; color: #4A3728; font-size: 40rpx; text-shadow: 1rpx 1rpx 0 rgba(255,255,255,0.3); }
 
 .reward-card {
-  background: #fff;
-  border-radius: 16rpx;
+  background: #FFFDF5;
+  border-radius: 20rpx;
   padding: 28rpx;
   margin-bottom: 16rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2rpx solid #F0D68A;
+  box-shadow: 0 4rpx 12rpx rgba(139,105,20,0.08);
 }
 
-.reward-name { display: block; font-size: 30rpx; font-weight: 500; margin-bottom: 8rpx; }
-.reward-type { font-size: 24rpx; color: #666; }
-.reward-stock { display: block; font-size: 22rpx; color: #999; margin-top: 4rpx; }
+.reward-name { display: block; font-size: 30rpx; font-weight: 500; margin-bottom: 8rpx; color: #4A3728; }
+.reward-type { font-size: 24rpx; color: #8B6914; }
+.reward-stock { display: block; font-size: 22rpx; color: #A0895C; margin-top: 4rpx; }
 
 .reward-action { text-align: right; }
-.reward-cost { display: block; font-size: 28rpx; color: #f57c00; font-weight: bold; margin-bottom: 8rpx; }
+.reward-cost { display: block; font-size: 28rpx; color: #FF8C00; font-weight: bold; margin-bottom: 8rpx; }
 
 .btn-exchange {
-  background: #1a73e8 !important;
-  color: #fff !important;
+  background: linear-gradient(135deg, #FFD93D, #F5A623) !important;
+  color: #4A3728 !important;
+  font-weight: bold !important;
+  border-radius: 30rpx !important;
+  border: 2rpx solid #D4850D !important;
 }
 
 .section-header { margin-top: 30rpx; margin-bottom: 16rpx; }
-.section-title { font-size: 30rpx; font-weight: bold; }
+.section-title { font-size: 30rpx; font-weight: bold; color: #4A3728; }
 
 .exchange-item {
-  background: #fff;
-  border-radius: 12rpx;
+  background: #FFFDF5;
+  border-radius: 16rpx;
   padding: 20rpx;
   margin-bottom: 12rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2rpx solid #F0D68A;
 }
 
-.ex-name { flex: 1; font-size: 28rpx; }
-.ex-cost { font-size: 26rpx; color: #999; margin-right: 16rpx; }
-.ex-status { font-size: 24rpx; }
-.ex-status.pending { color: #ff9800; }
-.ex-status.fulfilled { color: #4caf50; }
+.ex-name { flex: 1; font-size: 28rpx; color: #4A3728; }
+.ex-cost { font-size: 26rpx; color: #8B6914; margin-right: 16rpx; }
+.ex-status { font-size: 24rpx; font-weight: 500; }
+.ex-status.pending { color: #FF8C00; }
+.ex-status.fulfilled { color: #4CAF50; }
 .ex-status.cancelled { color: #999; }
 
-.empty { text-align: center; padding: 80rpx; color: #999; }
+.empty { text-align: center; padding: 80rpx; color: #8B6914; }

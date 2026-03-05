@@ -1,22 +1,37 @@
 .container { padding: 20rpx; }
 
 .points-card {
-  background: linear-gradient(135deg, #1a73e8, #0d47a1);
-  border-radius: 20rpx;
+  background: linear-gradient(135deg, #FFD93D 0%, #F5A623 50%, #FF8C00 100%);
+  border-radius: 24rpx;
   padding: 40rpx;
-  color: #fff;
+  color: #4A3728;
   margin-bottom: 20rpx;
+  border: 3rpx solid #D4850D;
+  box-shadow: 0 8rpx 24rpx rgba(245,166,35,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.points-card::after {
+  content: '';
+  position: absolute;
+  top: -30rpx;
+  right: -30rpx;
+  width: 160rpx;
+  height: 160rpx;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
 }
 
 .points-label { font-size: 26rpx; opacity: 0.8; }
-.points-value { display: block; font-size: 72rpx; font-weight: bold; margin: 10rpx 0; }
+.points-value { display: block; font-size: 72rpx; font-weight: bold; margin: 10rpx 0; text-shadow: 2rpx 2rpx 0 rgba(255,255,255,0.3); }
 
 .points-stats {
   display: flex;
   gap: 40rpx;
   margin-top: 20rpx;
   padding-top: 20rpx;
-  border-top: 1rpx solid rgba(255,255,255,0.2);
+  border-top: 2rpx solid rgba(74,55,40,0.15);
 }
 
 .stat-value { display: block; font-size: 32rpx; font-weight: bold; }
@@ -30,13 +45,14 @@
 
 .action-btn {
   flex: 1;
-  background: #fff;
-  border-radius: 16rpx;
+  background: #FFFDF5;
+  border-radius: 20rpx;
   padding: 24rpx;
   text-align: center;
   font-size: 26rpx;
-  color: #333;
-  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.06);
+  color: #4A3728;
+  box-shadow: 0 4rpx 12rpx rgba(139,105,20,0.1);
+  border: 2rpx solid #F0D68A;
 }
 
 .action-icon { display: block; font-size: 48rpx; margin-bottom: 8rpx; }
@@ -48,18 +64,20 @@
   margin-bottom: 16rpx;
 }
 
-.section-title { font-size: 32rpx; font-weight: bold; }
-.task-count { font-size: 24rpx; color: #999; }
+.section-title { font-size: 32rpx; font-weight: bold; color: #4A3728; }
+.task-count { font-size: 24rpx; color: #8B6914; }
 
 .task-card {
-  background: #fff;
-  border-radius: 16rpx;
+  background: #FFFDF5;
+  border-radius: 20rpx;
   padding: 28rpx;
   margin-bottom: 16rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.06);
+  box-shadow: 0 4rpx 12rpx rgba(139,105,20,0.08);
+  border: 2rpx solid #F0D68A;
+  border-left: 8rpx solid #F5A623;
 }
 
-.task-card.completed { opacity: 0.6; }
+.task-card.completed { opacity: 0.5; border-left-color: #4CAF50; }
 
 .task-header {
   display: flex;
@@ -68,27 +86,28 @@
   margin-bottom: 12rpx;
 }
 
-.task-title { font-size: 30rpx; font-weight: 500; flex: 1; }
-.task-points { font-size: 32rpx; font-weight: bold; color: #f57c00; }
+.task-title { font-size: 30rpx; font-weight: 500; flex: 1; color: #4A3728; }
+.task-points { font-size: 32rpx; font-weight: bold; color: #FF8C00; }
 
 .task-meta { display: flex; gap: 16rpx; align-items: center; }
 
 .verify-tag {
   font-size: 22rpx;
   padding: 4rpx 16rpx;
-  border-radius: 8rpx;
-  background: #e3f2fd;
-  color: #1a73e8;
+  border-radius: 20rpx;
+  background: #FFF3D6;
+  color: #D4850D;
+  border: 1rpx solid #F0D68A;
 }
 
-.verify-tag.screenshot { background: #fff3e0; color: #f57c00; }
+.verify-tag.screenshot { background: #FFE8CC; color: #FF8C00; border-color: #FFB74D; }
 
-.task-status { font-size: 24rpx; color: #4caf50; }
-.task-status.pending { color: #ff9800; }
+.task-status { font-size: 24rpx; color: #4CAF50; font-weight: 500; }
+.task-status.pending { color: #FF8C00; }
 
 .empty {
   text-align: center;
   padding: 80rpx;
-  color: #999;
+  color: #8B6914;
   font-size: 28rpx;
 }

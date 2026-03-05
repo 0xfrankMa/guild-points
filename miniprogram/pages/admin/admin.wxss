@@ -1,27 +1,30 @@
 .container { padding: 20rpx; }
 
 .menu-item {
-  background: #fff;
-  border-radius: 16rpx;
+  background: #FFFDF5;
+  border-radius: 20rpx;
   padding: 32rpx;
   margin-bottom: 16rpx;
   display: flex;
   align-items: center;
   position: relative;
+  border: 2rpx solid #F0D68A;
+  box-shadow: 0 4rpx 12rpx rgba(139,105,20,0.08);
 }
 
 .menu-icon { font-size: 48rpx; margin-right: 24rpx; }
-.menu-title { display: block; font-size: 30rpx; font-weight: 500; }
-.menu-desc { font-size: 24rpx; color: #999; }
+.menu-title { display: block; font-size: 30rpx; font-weight: 500; color: #4A3728; }
+.menu-desc { font-size: 24rpx; color: #8B6914; }
 
 .badge {
   position: absolute;
   right: 24rpx;
-  background: #f44336;
+  background: linear-gradient(135deg, #E74C3C, #C0392B);
   color: #fff;
   font-size: 22rpx;
   padding: 4rpx 14rpx;
   border-radius: 20rpx;
   min-width: 36rpx;
   text-align: center;
+  box-shadow: 0 2rpx 8rpx rgba(231,76,60,0.3);
 }

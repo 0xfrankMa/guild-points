@@ -5,7 +5,7 @@ App({
       return
     }
     wx.cloud.init({
-      env: 'YOUR_ENV_ID',
+      env: 'cloudbase-7gkgm64j5535ea47',
       traceUser: true
     })
     this.checkLogin()

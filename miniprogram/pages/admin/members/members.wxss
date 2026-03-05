@@ -1,15 +1,20 @@
 .container { padding: 20rpx; }
 
 .member-card {
-  background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 16rpx;
+  background: #FFFDF5; border-radius: 20rpx; padding: 24rpx; margin-bottom: 16rpx;
+  border: 2rpx solid #F0D68A; box-shadow: 0 4rpx 12rpx rgba(139,105,20,0.08);
 }
 .member-info { display: flex; align-items: center; gap: 12rpx; margin-bottom: 8rpx; }
-.member-name { font-size: 30rpx; font-weight: 500; }
+.member-name { font-size: 30rpx; font-weight: 500; color: #4A3728; }
 .member-role {
-  font-size: 22rpx; padding: 4rpx 12rpx; border-radius: 6rpx; background: #e0e0e0;
+  font-size: 22rpx; padding: 4rpx 16rpx; border-radius: 20rpx;
+  background: #FFF3D6; color: #8B6914; border: 1rpx solid #F0D68A;
 }
-.member-role.master { background: #ffd700; color: #333; }
-.member-role.admin { background: #e3f2fd; color: #1a73e8; }
-.member-stats { font-size: 24rpx; color: #999; margin-bottom: 12rpx; }
+.member-role.master { background: linear-gradient(135deg, #FFD93D, #F5A623); color: #4A3728; font-weight: bold; }
+.member-role.admin { background: #E8F5E9; color: #2E7D32; border-color: #81C784; }
+.member-stats { font-size: 24rpx; color: #8B6914; margin-bottom: 12rpx; }
 .member-actions { display: flex; gap: 12rpx; }
-.btn-danger { background: #f44336 !important; color: #fff !important; }
+.btn-danger {
+  background: linear-gradient(135deg, #EF5350, #E74C3C) !important;
+  color: #fff !important; font-weight: bold !important; border-radius: 30rpx !important;
+}
