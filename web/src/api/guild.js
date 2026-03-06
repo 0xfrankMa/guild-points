@@ -4,12 +4,28 @@ import { generateId, generateToken, generateInviteCode } from '../db.js'
 export async function handleGuildRoutes(request, env, path, method) {
   if (path === '/api/guild/create' && method === 'POST') {
     const body = await request.json()
-    const { name, nickname } = body
+    const { name, nickname, activationCode } = body
+
+    if (!activationCode) {
+      return jsonResponse({ error: '请输入激活码' }, 400)
+    }
+
+    const code = await env.DB.prepare(
+      'SELECT * FROM activation_codes WHERE code = ? AND used = 0'
+    ).bind(activationCode).first()
+
+    if (!code) {
+      return jsonResponse({ error: '激活码无效或已使用' }, 400)
+    }
 
     const guildId = generateId()
     const inviteCode = generateInviteCode()
     const userId = generateId()
     const token = generateToken()
+
+    await env.DB.prepare(
+      'UPDATE activation_codes SET used = 1, used_by_guild = ? WHERE code = ?'
+    ).bind(guildId, activationCode).run()
 
     await env.DB.prepare(
       'INSERT INTO guilds (id, name, invite_code, created_by) VALUES (?, ?, ?, ?)'

@@ -34,6 +34,10 @@ route('#login', async (app) => {
       </div>
       <div class="card" id="create-form" style="display:none">
         <div class="input-group">
+          <label class="label">🔐 激活码</label>
+          <input class="input" id="activation-code" placeholder="输入激活码">
+        </div>
+        <div class="input-group">
           <label class="label">🏰 工会名称</label>
           <input class="input" id="guild-name" placeholder="输入工会名称">
         </div>
@@ -69,11 +73,12 @@ route('#login', async (app) => {
   }
 
   app.querySelector('#btn-create').onclick = async () => {
+    const activationCode = app.querySelector('#activation-code').value.trim()
     const name = app.querySelector('#guild-name').value.trim()
     const nickname = app.querySelector('#create-nickname').value.trim()
-    if (!name || !nickname) { showToast('请填写完整信息'); return }
+    if (!activationCode || !name || !nickname) { showToast('请填写完整信息'); return }
     try {
-      const res = await api('POST', '/api/guild/create', { name, nickname })
+      const res = await api('POST', '/api/guild/create', { name, nickname, activationCode })
       setToken(res.token)
       showToast('创建成功! 邀请码: ' + res.inviteCode)
       setTimeout(() => navigate('#home'), 1500)

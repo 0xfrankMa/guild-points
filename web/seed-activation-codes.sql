@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS activation_codes (
+  code TEXT PRIMARY KEY,
+  used INTEGER DEFAULT 0,
+  used_by_guild TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO activation_codes (code) VALUES
+  ('GUILD-AX7K-2026'),
+  ('GUILD-BM3P-2026'),
+  ('GUILD-CN9W-2026'),
+  ('GUILD-DT5R-2026'),
+  ('GUILD-EF8J-2026'),
+  ('GUILD-GH2V-2026'),
+  ('GUILD-JK6L-2026'),
+  ('GUILD-LN4Q-2026'),
+  ('GUILD-PS1Y-2026'),
+  ('GUILD-RW7Z-2026');
