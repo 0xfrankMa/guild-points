@@ -424,7 +424,7 @@ route('#profile', async (app) => {
 
 // Page 6: Admin (#admin)
 route('#admin', async (app) => {
-  let currentTab = 'publish'
+  let currentTab = 'stats'
 
   async function render() {
     app.innerHTML = `
@@ -435,6 +435,7 @@ route('#admin', async (app) => {
           <div><div style="font-weight:bold;font-size:18px;">管理后台</div><div style="font-size:12px;color:var(--text-light);">管理你的工会王国</div></div>
         </div>
         <div class="tab-bar">
+          <div class="tab ${currentTab==='stats'?'active':''}" data-tab="stats">📊 统计</div>
           <div class="tab ${currentTab==='publish'?'active':''}" data-tab="publish">📜 发布</div>
           <div class="tab ${currentTab==='review'?'active':''}" data-tab="review">🔍 审核</div>
           <div class="tab ${currentTab==='rewards'?'active':''}" data-tab="rewards">🎁 商品</div>
@@ -452,7 +453,108 @@ route('#admin', async (app) => {
 
     const content = app.querySelector('#tab-content')
 
-    if (currentTab === 'publish') {
+    if (currentTab === 'stats') {
+      try {
+        const stats = await api('GET', '/api/stats')
+        const o = stats.overview
+        const today = new Date().toISOString().slice(0, 10)
+        const checkinRate = o.total_members > 0 ? Math.round(o.today_checkins / o.total_members * 100) : 0
+
+        // Build 7-day chart (simple bar chart with CSS)
+        const last7 = []
+        for (let i = 6; i >= 0; i--) {
+          const d = new Date(); d.setDate(d.getDate() - i)
+          last7.push(d.toISOString().slice(0, 10))
+        }
+        const subsMap = {}; (stats.daily_submissions || []).forEach(d => subsMap[d.date] = d.cnt)
+        const checkinMap = {}; (stats.daily_checkins || []).forEach(d => checkinMap[d.date] = d.cnt)
+        const maxSubs = Math.max(1, ...last7.map(d => subsMap[d] || 0))
+        const maxCheckins = Math.max(1, ...last7.map(d => checkinMap[d] || 0))
+
+        // Member activity classification
+        const ms = stats.member_stats || []
+        const activeMembers = ms.filter(m => m.checked_in_today || m.submissions_7d > 0).length
+        const inactiveMembers = ms.filter(m => !m.checked_in_today && m.submissions_7d === 0).length
+
+        content.innerHTML = `
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+            <div class="card" style="text-align:center;margin-bottom:0;">
+              <div style="font-size:28px;font-weight:bold;color:var(--primary);">${o.total_members}</div>
+              <div style="font-size:12px;color:var(--text-light);">总成员数</div>
+            </div>
+            <div class="card" style="text-align:center;margin-bottom:0;">
+              <div style="font-size:28px;font-weight:bold;color:var(--primary);">${o.active_tasks}</div>
+              <div style="font-size:12px;color:var(--text-light);">进行中任务</div>
+            </div>
+            <div class="card" style="text-align:center;margin-bottom:0;">
+              <div style="font-size:28px;font-weight:bold;color:${checkinRate >= 80 ? 'var(--success)' : checkinRate >= 50 ? '#FF8C00' : 'var(--danger)'};">${checkinRate}%</div>
+              <div style="font-size:12px;color:var(--text-light);">今日签到率 (${o.today_checkins}/${o.total_members})</div>
+            </div>
+            <div class="card" style="text-align:center;margin-bottom:0;">
+              <div style="font-size:28px;font-weight:bold;color:var(--primary);">${o.today_submissions}</div>
+              <div style="font-size:12px;color:var(--text-light);">今日提交数</div>
+            </div>
+            <div class="card" style="text-align:center;margin-bottom:0;">
+              <div style="font-size:28px;font-weight:bold;color:#FF8C00;">${o.pending_reviews}</div>
+              <div style="font-size:12px;color:var(--text-light);">待审核</div>
+            </div>
+            <div class="card" style="text-align:center;margin-bottom:0;">
+              <div style="font-size:28px;font-weight:bold;color:var(--primary);">${o.total_points_distributed}</div>
+              <div style="font-size:12px;color:var(--text-light);">累计发放积分</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="font-weight:bold;margin-bottom:12px;">📈 近7天提交趋势</div>
+            <div style="display:flex;align-items:flex-end;gap:4px;height:100px;">
+              ${last7.map(d => {
+                const cnt = subsMap[d] || 0
+                const h = Math.max(4, Math.round(cnt / maxSubs * 80))
+                const isToday = d === today
+                return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">' +
+                  '<span style="font-size:10px;color:var(--text-light);">' + cnt + '</span>' +
+                  '<div style="width:100%;height:' + h + 'px;background:' + (isToday ? 'linear-gradient(135deg,#FFD93D,#F5A623)' : 'var(--border)') + ';border-radius:4px;"></div>' +
+                  '<span style="font-size:9px;color:var(--text-light);">' + d.slice(5) + '</span></div>'
+              }).join('')}
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="font-weight:bold;margin-bottom:12px;">🙏 近7天签到趋势</div>
+            <div style="display:flex;align-items:flex-end;gap:4px;height:100px;">
+              ${last7.map(d => {
+                const cnt = checkinMap[d] || 0
+                const h = Math.max(4, Math.round(cnt / maxCheckins * 80))
+                const isToday = d === today
+                return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">' +
+                  '<span style="font-size:10px;color:var(--text-light);">' + cnt + '</span>' +
+                  '<div style="width:100%;height:' + h + 'px;background:' + (isToday ? 'linear-gradient(135deg,#81C784,#4CAF50)' : 'var(--border)') + ';border-radius:4px;"></div>' +
+                  '<span style="font-size:9px;color:var(--text-light);">' + d.slice(5) + '</span></div>'
+              }).join('')}
+            </div>
+          </div>
+
+          ${(stats.task_stats || []).length > 0 ? '<div class="card"><div style="font-weight:bold;margin-bottom:12px;">📋 任务完成情况</div>' +
+            (stats.task_stats || []).map(t => {
+              const rate = o.total_members > 0 ? Math.round(t.unique_completers / o.total_members * 100) : 0
+              return '<div style="margin-bottom:12px;"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>' + t.title + ' (+' + t.points + ')</span><span style="color:var(--text-light);">' + t.unique_completers + '/' + o.total_members + '人 (' + rate + '%)</span></div>' +
+                '<div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="height:100%;width:' + rate + '%;background:linear-gradient(135deg,#FFD93D,#F5A623);border-radius:4px;"></div></div></div>'
+            }).join('') + '</div>' : ''}
+
+          <div class="card">
+            <div style="font-weight:bold;margin-bottom:12px;">👥 成员活跃度 <span style="font-weight:normal;font-size:12px;color:var(--text-light);">活跃 ${activeMembers} / 不活跃 ${inactiveMembers}</span></div>
+            ${ms.map(m => {
+              const active = m.checked_in_today || m.submissions_7d > 0
+              return '<div style="display:flex;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);gap:8px;">' +
+                '<span style="width:8px;height:8px;border-radius:50%;background:' + (active ? 'var(--success)' : '#ccc') + ';flex-shrink:0;"></span>' +
+                '<div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + m.nickname + ' <span class="badge">' + ({master:'会长',admin:'管理员',member:'成员'}[m.role]) + '</span></div>' +
+                '<div style="font-size:11px;color:var(--text-light);">连签' + m.checkin_streak + '天 · 7天提交' + m.submissions_7d + '次 · 累计' + m.total_earned + '分</div></div>' +
+                '<div style="text-align:right;flex-shrink:0;">' + (m.checked_in_today ? '<span style="font-size:11px;color:var(--success);">今日已签</span>' : '<span style="font-size:11px;color:#ccc;">未签到</span>') + '</div></div>'
+            }).join('')}
+          </div>`
+      } catch(e) { content.innerHTML = '<div class="empty">' + e.message + '</div>' }
+
+    } else if (currentTab === 'publish') {
       content.innerHTML = `
         <div class="card">
           <div class="input-group"><label class="label">任务标题 *</label><input class="input" id="task-title" placeholder="如：完成XX副本3次"></div>

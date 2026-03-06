@@ -5,6 +5,7 @@ import { handleReviewRoutes } from './api/review.js'
 import { handleShopRoutes } from './api/shop.js'
 import { handleProfileRoutes } from './api/profile.js'
 import { handleUploadRoutes } from './api/upload.js'
+import { handleStatsRoutes } from './api/stats.js'
 
 export async function handleApiRequest(request, env) {
   const url = new URL(request.url)
@@ -33,6 +34,8 @@ export async function handleApiRequest(request, env) {
       response = await handleShopRoutes(request, env, path, method)
     } else if (path.startsWith('/api/profile') || path === '/api/checkin' || path === '/api/members' || path.startsWith('/api/members/')) {
       response = await handleProfileRoutes(request, env, path, method)
+    } else if (path === '/api/stats') {
+      response = await handleStatsRoutes(request, env, path, method)
     } else if (path === '/api/upload' || path.startsWith('/api/file/')) {
       response = await handleUploadRoutes(request, env, path, method)
     } else {
