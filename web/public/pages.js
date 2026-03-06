@@ -339,6 +339,18 @@ route('#profile', async (app) => {
 
       ${membersHtml}
 
+      <div class="invite-card" style="margin-top:20px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <span style="font-size:24px;">📨</span>
+          <span style="font-weight:bold;font-size:16px;">邀请好友加入</span>
+        </div>
+        <div class="invite-code-box" style="margin-bottom:12px;">
+          <div style="font-size:12px;color:var(--text-light);margin-bottom:4px;">工会邀请码</div>
+          <div style="font-size:24px;font-weight:bold;letter-spacing:4px;color:var(--primary-dark);">${user.invite_code || '---'}</div>
+        </div>
+        <button class="btn" id="btn-copy-invite" style="width:100%;">复制邀请码</button>
+      </div>
+
       <div class="danger-zone">
         <button class="btn btn-danger" id="btn-leave">退出工会</button>
       </div>
@@ -378,6 +390,16 @@ route('#profile', async (app) => {
           navigate('#profile')
         } catch(e) { showToast(e.message) }
       }
+    }
+  }
+
+  // Copy invite code
+  app.querySelector('#btn-copy-invite').onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(user.invite_code || '')
+      showToast('邀请码已复制')
+    } catch(e) {
+      showToast(user.invite_code || '')
     }
   }
 

@@ -8,11 +8,12 @@ export async function handleProfileRoutes(request, env, path, method) {
     if (result.error) return result.error
     const { user } = result
 
-    const guild = await env.DB.prepare('SELECT name FROM guilds WHERE id = ?').bind(user.guild_id).first()
+    const guild = await env.DB.prepare('SELECT name, invite_code FROM guilds WHERE id = ?').bind(user.guild_id).first()
     const guild_name = guild ? guild.name : null
+    const invite_code = guild ? guild.invite_code : null
 
     const { token, ...userFields } = user
-    return jsonResponse({ user: { ...userFields, guild_name } })
+    return jsonResponse({ user: { ...userFields, guild_name, invite_code } })
   }
 
   // PUT /api/profile/nickname
