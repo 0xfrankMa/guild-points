@@ -12,8 +12,8 @@ export async function handleGuildRoutes(request, env, path, method) {
     const token = generateToken()
 
     await env.DB.prepare(
-      'INSERT INTO guilds (id, name, invite_code) VALUES (?, ?, ?)'
-    ).bind(guildId, name, inviteCode).run()
+      'INSERT INTO guilds (id, name, invite_code, created_by) VALUES (?, ?, ?, ?)'
+    ).bind(guildId, name, inviteCode, userId).run()
 
     await env.DB.prepare(
       'INSERT INTO users (id, guild_id, nickname, role, token) VALUES (?, ?, ?, ?, ?)'

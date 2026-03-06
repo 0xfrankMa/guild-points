@@ -50,8 +50,8 @@ export async function handleTaskRoutes(request, env, path, method) {
     const taskId = generateId()
 
     await env.DB.prepare(
-      `INSERT INTO tasks (id, guild_id, title, description, points, verify_type, daily, max_completions)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+      `INSERT INTO tasks (id, guild_id, title, description, points, verify_type, daily, max_completions, created_by)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).bind(
       taskId,
       result.user.guild_id,
@@ -60,7 +60,8 @@ export async function handleTaskRoutes(request, env, path, method) {
       points,
       verifyType || 'self_check',
       daily ? 1 : 0,
-      maxCompletions || 1
+      maxCompletions || 1,
+      result.user.id
     ).run()
 
     return jsonResponse({ success: true, taskId })

@@ -1,10 +1,10 @@
-import { requireAuth } from '../auth.js';
+import { requireUser, jsonResponse } from '../auth.js';
 
 export async function handleUploadRoutes(request, env, path, method) {
   // POST /api/upload - upload file to R2
   if (method === 'POST' && path === '/api/upload') {
-    const authResult = await requireAuth(request, env);
-    if (authResult instanceof Response) return authResult;
+    const result = await requireUser(request, env);
+    if (result.error) return result.error;
 
     const filename = request.headers.get('X-Filename') || 'file';
     const random = Math.random().toString(36).substring(2, 10);

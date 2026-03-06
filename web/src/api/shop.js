@@ -92,7 +92,7 @@ export async function handleShopRoutes(request, env, path, method) {
     // Create exchange record
     const exchangeId = generateId()
     await env.DB.prepare(
-      "INSERT INTO exchanges (id, user_id, reward_id, guild_id, cost, status) VALUES (?, ?, ?, ?, ?, 'pending')"
+      "INSERT INTO exchanges (id, user_id, reward_id, guild_id, cost) VALUES (?, ?, ?, ?, ?)"
     ).bind(exchangeId, user.id, rewardId, user.guild_id, reward.cost).run()
 
     return jsonResponse({ success: true })
@@ -116,7 +116,7 @@ export async function handleShopRoutes(request, env, path, method) {
     if (error) return error
 
     const { results: exchanges } = await env.DB.prepare(
-      "SELECT e.*, r.name AS reward_name, u.nickname FROM exchanges e LEFT JOIN rewards r ON e.reward_id = r.id LEFT JOIN users u ON e.user_id = u.id WHERE e.guild_id = ? AND e.status = 'pending' ORDER BY e.created_at DESC"
+      "SELECT e.*, r.name AS reward_name, u.nickname AS user_nickname FROM exchanges e LEFT JOIN rewards r ON e.reward_id = r.id LEFT JOIN users u ON e.user_id = u.id WHERE e.guild_id = ? AND e.status = 'pending' ORDER BY e.created_at DESC"
     ).bind(user.guild_id).all()
 
     return jsonResponse({ exchanges })

@@ -62,7 +62,8 @@ CREATE TABLE IF NOT EXISTS exchanges (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL,
   reward_id TEXT NOT NULL,
-  reward_name TEXT NOT NULL,
+  guild_id TEXT NOT NULL,
+  cost INTEGER DEFAULT 0,
   status TEXT DEFAULT 'pending',
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
