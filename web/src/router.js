@@ -33,8 +33,8 @@ export async function handleApiRequest(request, env) {
       response = await handleShopRoutes(request, env, path, method)
     } else if (path.startsWith('/api/profile') || path === '/api/checkin' || path === '/api/members' || path.startsWith('/api/members/')) {
       response = await handleProfileRoutes(request, env, path, method)
-    } else if (path === '/api/upload') {
-      response = await handleUploadRoutes(request, env)
+    } else if (path === '/api/upload' || path.startsWith('/api/file/')) {
+      response = await handleUploadRoutes(request, env, path, method)
     } else {
       response = jsonResponse({ error: 'Not found' }, 404)
     }
