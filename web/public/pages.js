@@ -469,7 +469,38 @@ route('#admin', async (app) => {
             </div>
           </div>
           <button class="btn" id="btn-publish">发布任务</button>
-        </div>`
+        </div>
+        <div id="existing-tasks"><div class="loading">加载中...</div></div>`
+
+      // Load existing tasks
+      try {
+        const tasksRes = await api('GET', '/api/tasks')
+        const tasks = tasksRes.tasks || []
+        const tasksEl = content.querySelector('#existing-tasks')
+        if (tasks.length === 0) {
+          tasksEl.innerHTML = ''
+        } else {
+          tasksEl.innerHTML = '<div class="section-title" style="margin-top:16px;">已发布任务</div>' + tasks.map(t => `
+            <div class="card" style="display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <div style="font-weight:500;">${t.title}</div>
+                <div style="font-size:12px;color:var(--text-light);">${t.verify_type === 'screenshot' ? '📸 截图' : '✅ 打卡'} · +${t.points}积分</div>
+              </div>
+              <button class="btn btn-small btn-danger btn-del-task" data-id="${t.id}">删除</button>
+            </div>`).join('')
+          tasksEl.querySelectorAll('.btn-del-task').forEach(btn => {
+            btn.onclick = async () => {
+              const ok = await showConfirm('删除任务', '确定删除此任务？已完成的用户积分不受影响。')
+              if (!ok) return
+              try {
+                await api('DELETE', '/api/tasks/' + btn.dataset.id)
+                showToast('已删除')
+                render()
+              } catch(e) { showToast(e.message) }
+            }
+          })
+        }
+      } catch(e) {}
 
       let verifyType = 'self_check'
       content.querySelectorAll('#verify-type .tab').forEach(t => {
