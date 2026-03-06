@@ -7,6 +7,10 @@ route('#login', async (app) => {
   // If already has token, redirect to home
   if (getToken()) { navigate('#home'); return }
 
+  // Read invite code from URL query param ?invite=XXX
+  const urlParams = new URLSearchParams(window.location.search)
+  const preInvite = urlParams.get('invite') || ''
+
   app.innerHTML = `
     <div class="login-page">
       <div class="logo-section">
@@ -24,7 +28,7 @@ route('#login', async (app) => {
       <div class="card" id="join-form">
         <div class="input-group">
           <label class="label">🔑 邀请码</label>
-          <input class="input" id="invite-code" placeholder="输入工会邀请码">
+          <input class="input" id="invite-code" placeholder="输入工会邀请码" value="${preInvite}">
         </div>
         <div class="input-group">
           <label class="label">🎮 游戏昵称</label>
@@ -348,7 +352,7 @@ route('#profile', async (app) => {
           <div style="font-size:12px;color:var(--text-light);margin-bottom:4px;">工会邀请码</div>
           <div style="font-size:24px;font-weight:bold;letter-spacing:4px;color:var(--primary-dark);">${user.invite_code || '---'}</div>
         </div>
-        <button class="btn" id="btn-copy-invite" style="width:100%;">复制邀请码</button>
+        <button class="btn" id="btn-copy-invite" style="width:100%;">复制邀请链接</button>
       </div>
 
       <div class="danger-zone">
@@ -393,13 +397,14 @@ route('#profile', async (app) => {
     }
   }
 
-  // Copy invite code
+  // Copy invite link
   app.querySelector('#btn-copy-invite').onclick = async () => {
+    const link = window.location.origin + '?invite=' + (user.invite_code || '') + '#login'
     try {
-      await navigator.clipboard.writeText(user.invite_code || '')
-      showToast('邀请码已复制')
+      await navigator.clipboard.writeText(link)
+      showToast('邀请链接已复制')
     } catch(e) {
-      showToast(user.invite_code || '')
+      showToast(link)
     }
   }
 
