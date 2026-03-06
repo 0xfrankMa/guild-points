@@ -13,7 +13,8 @@ function callCloud(name, data) {
         }
       },
       fail: err => {
-        wx.showToast({ title: '网络错误', icon: 'none' })
+        console.error('云函数调用失败:', name, err)
+        wx.showToast({ title: err.errMsg || '网络错误', icon: 'none', duration: 3000 })
         reject(err)
       }
     })
@@ -25,11 +26,17 @@ const userApi = {
   login: () => callCloud('user', { action: 'login' }),
   getProfile: () => callCloud('user', { action: 'getProfile' }),
   updateNickname: (nickname) => callCloud('user', { action: 'updateNickname', nickname }),
-  createGuild: (guildName) => callCloud('user', { action: 'createGuild', guildName }),
-  joinGuild: (inviteCode, nickname) => callCloud('user', { action: 'joinGuild', inviteCode, nickname }),
+  createGuild: (guildName, nickname, avatarUrl) => callCloud('user', { action: 'createGuild', guildName, nickname, avatarUrl }),
+  joinGuild: (inviteCode, nickname, avatarUrl) => callCloud('user', { action: 'joinGuild', inviteCode, nickname, avatarUrl }),
   setRole: (targetUserId, role) => callCloud('user', { action: 'setRole', targetUserId, role }),
   listMembers: () => callCloud('user', { action: 'listMembers' }),
-  removeMember: (targetUserId) => callCloud('user', { action: 'removeMember', targetUserId })
+  removeMember: (targetUserId) => callCloud('user', { action: 'removeMember', targetUserId }),
+  checkin: () => callCloud('user', { action: 'checkin' }),
+  leaveGuild: () => callCloud('user', { action: 'leaveGuild' }),
+  transferMaster: (targetUserId) => callCloud('user', { action: 'transferMaster', targetUserId }),
+  updateAvatar: (avatarUrl) => callCloud('user', { action: 'updateAvatar', avatarUrl }),
+  getGuildSettings: () => callCloud('user', { action: 'getGuildSettings' }),
+  updateCheckinSlogan: (slogan) => callCloud('user', { action: 'updateCheckinSlogan', slogan })
 }
 
 // Task APIs

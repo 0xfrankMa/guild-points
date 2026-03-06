@@ -52,7 +52,7 @@ async function addReward(openid, event) {
       name: name.trim(),
       type: type || 'game_item',
       cost: Number(cost),
-      stock: stock != null ? Number(stock) : -1,
+      stock: (stock != null && stock !== '') ? Number(stock) : -1,
       status: 'active',
       created_at: db.serverDate()
     }

@@ -2,7 +2,7 @@ const { shopApi } = require('../../../utils/api')
 
 Page({
   data: {
-    name: '', cost: '', stock: '-1', type: 'cash',
+    name: '', cost: '', stock: '', type: 'cash',
     rewards: [], exchanges: []
   },
   onShow() { this.loadData() },
@@ -28,7 +28,7 @@ Page({
       cost: this.data.cost, stock: this.data.stock
     })
     wx.showToast({ title: '添加成功' })
-    this.setData({ name: '', cost: '', stock: '-1' })
+    this.setData({ name: '', cost: '', stock: '' })
     this.loadData()
   },
   async toggleRewardStatus(e) {

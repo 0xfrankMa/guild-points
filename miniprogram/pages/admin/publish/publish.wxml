@@ -1,4 +1,12 @@
 <view class="container">
+  <view class="page-header">
+    <text class="page-icon">📜</text>
+    <view>
+      <text class="page-title">发布任务</text>
+      <text class="page-subtitle">创建新的工会任务</text>
+    </view>
+  </view>
+
   <view class="form-card">
     <view class="input-group">
       <text class="label">任务标题 *</text>
@@ -29,7 +37,7 @@
     </view>
     <view class="input-group">
       <text class="label">每日重置</text>
-      <switch checked="{{daily}}" bindchange="toggleDaily" color="#1a73e8" />
+      <switch checked="{{daily}}" bindchange="toggleDaily" color="#F5A623" />
     </view>
     <button class="btn-publish" bindtap="publish" loading="{{loading}}">发布任务</button>
   </view>

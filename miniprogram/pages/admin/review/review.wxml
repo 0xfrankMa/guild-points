@@ -1,4 +1,12 @@
 <view class="container">
+  <view class="page-header">
+    <text class="page-icon">🔍</text>
+    <view>
+      <text class="page-title">审核队列</text>
+      <text class="page-subtitle">审核成员提交的任务截图</text>
+    </view>
+  </view>
+
   <view class="batch-bar" wx:if="{{submissions.length > 0}}">
     <view class="select-all" bindtap="toggleSelectAll">
       <text>{{selectedAll ? '☑' : '☐'}} 全选</text>

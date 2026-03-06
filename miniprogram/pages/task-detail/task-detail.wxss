@@ -82,8 +82,19 @@
   border-radius: 50rpx !important;
   font-size: 32rpx !important;
   font-weight: bold !important;
+  height: 88rpx;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 6rpx 20rpx rgba(245,166,35,0.5) !important;
   border: 2rpx solid #D4850D !important;
+}
+
+.btn-submit.btn-disabled {
+  background: linear-gradient(135deg, #E0D5B8 0%, #C9B98A 100%) !important;
+  color: #8B7D6B !important;
+  border-color: #B8A87A !important;
+  box-shadow: none !important;
 }
 
 .done-banner {

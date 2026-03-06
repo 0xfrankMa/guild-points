@@ -1,4 +1,12 @@
 <view class="container">
+  <view class="page-header">
+    <text class="page-icon">🎁</text>
+    <view>
+      <text class="page-title">商城管理</text>
+      <text class="page-subtitle">管理兑换商品与发放</text>
+    </view>
+  </view>
+
   <view class="form-card">
     <text class="form-title">添加商品</text>
     <view class="input-row">
@@ -10,7 +18,7 @@
         <view class="radio-item {{type === 'cash' ? 'active' : ''}}" bindtap="setType" data-type="cash">现金</view>
         <view class="radio-item {{type === 'game_item' ? 'active' : ''}}" bindtap="setType" data-type="game_item">游戏物品</view>
       </view>
-      <input placeholder="库存(-1无限)" type="number" value="{{stock}}" bindinput="onInput" data-field="stock" class="short" />
+      <input placeholder="库存" type="number" value="{{stock}}" bindinput="onInput" data-field="stock" class="short" />
     </view>
     <button size="mini" class="btn-add" bindtap="addReward">添加</button>
   </view>

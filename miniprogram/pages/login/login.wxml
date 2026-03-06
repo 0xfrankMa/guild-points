@@ -25,7 +25,16 @@
     </view>
     <view class="input-group">
       <text class="label">🎮 游戏昵称</text>
-      <input placeholder="输入你的游戏昵称" value="{{nickname}}" bindinput="onNicknameInput" />
+      <input placeholder="输入你的游戏内昵称，方便管理员识别" value="{{nickname}}" bindinput="onNicknameInput" />
+    </view>
+    <view class="avatar-group">
+      <text class="label">📷 选择头像</text>
+      <view class="avatar-pick">
+        <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" class="avatar-img" />
+          <text wx:else class="avatar-placeholder">点击选择</text>
+        </button>
+      </view>
     </view>
     <button class="btn-primary" bindtap="joinGuild" loading="{{loading}}">加入工会 🚀</button>
   </view>
@@ -34,6 +43,19 @@
     <view class="input-group">
       <text class="label">🏰 工会名称</text>
       <input placeholder="输入工会名称" value="{{guildName}}" bindinput="onGuildNameInput" />
+    </view>
+    <view class="input-group">
+      <text class="label">🎮 会长游戏昵称</text>
+      <input placeholder="输入你的游戏内昵称" value="{{nickname}}" bindinput="onNicknameInput" />
+    </view>
+    <view class="avatar-group">
+      <text class="label">📷 选择头像</text>
+      <view class="avatar-pick">
+        <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image wx:if="{{avatarUrl}}" src="{{avatarUrl}}" class="avatar-img" />
+          <text wx:else class="avatar-placeholder">点击选择</text>
+        </button>
+      </view>
     </view>
     <button class="btn-primary" bindtap="createGuild" loading="{{loading}}">创建工会 ⚔️</button>
   </view>

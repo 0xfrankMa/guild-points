@@ -60,5 +60,13 @@ Page({
 
   goToAdmin() {
     wx.navigateTo({ url: '/pages/admin/admin' })
+  },
+
+  onShareAppMessage() {
+    const user = this.data.userInfo
+    return {
+      title: '加入工会一起做任务赚积分！',
+      path: '/pages/index/index'
+    }
   }
 })

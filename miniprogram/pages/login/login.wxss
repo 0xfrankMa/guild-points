@@ -123,6 +123,36 @@
   background: #FFF8E7;
 }
 
+.avatar-group { margin-bottom: 30rpx; }
+
+.avatar-pick { margin-top: 12rpx; }
+
+.avatar-btn {
+  width: 128rpx !important;
+  height: 128rpx !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  background: #FFF8E7 !important;
+  border: 3rpx dashed #F0D68A !important;
+  overflow: hidden;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: normal !important;
+}
+.avatar-btn::after { border: none; }
+
+.avatar-img {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
+
+.avatar-placeholder {
+  font-size: 22rpx;
+  color: #8B6914;
+}
+
 .btn-primary {
   background: linear-gradient(135deg, #FFD93D 0%, #F5A623 100%) !important;
   color: #4A3728 !important;

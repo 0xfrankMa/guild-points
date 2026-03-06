@@ -1,6 +1,7 @@
 <view class="container">
   <view class="user-card">
-    <view class="user-avatar">🦫</view>
+    <image class="user-avatar" wx:if="{{userInfo.avatar_url}}" src="{{userInfo.avatar_url}}" mode="aspectFill" />
+    <view class="user-avatar user-avatar-default" wx:else>🦫</view>
     <view class="user-info">
       <text class="user-name">{{userInfo.nickname}}</text>
       <text class="user-role">{{roleLabel}}</text>
@@ -8,6 +9,35 @@
     <view class="user-points">
       <text class="points-num">{{userInfo.points || 0}}</text>
       <text class="points-label">⭐ 积分</text>
+    </view>
+  </view>
+
+  <view class="nickname-card">
+    <view class="nickname-row">
+      <text class="nickname-label">🎮 游戏昵称</text>
+      <text class="nickname-value" wx:if="{{!editingNickname}}">{{userInfo.nickname}}</text>
+      <input wx:else class="nickname-input" value="{{newNickname}}" bindinput="onNicknameInput" focus="true" />
+    </view>
+    <button size="mini" class="btn-edit-nickname" wx:if="{{!editingNickname}}" bindtap="startEditNickname">修改</button>
+    <button size="mini" class="btn-save-nickname" wx:else bindtap="saveNickname">保存</button>
+  </view>
+
+  <view class="checkin-card">
+    <view class="checkin-main" bindtap="doCheckin">
+      <view class="checkin-left">
+        <text class="checkin-icon">{{checkedIn ? '🙏' : '🦫'}}</text>
+        <view>
+          <text class="checkin-title">{{checkinSlogan}}</text>
+          <text class="checkin-desc">{{checkedIn ? '今日已膜拜 +1积分' : '每日膜拜获得1积分'}}</text>
+        </view>
+      </view>
+      <view class="checkin-right">
+        <text class="checkin-streak" wx:if="{{checkinStreak > 0}}">连续{{checkinStreak}}天</text>
+        <text class="checkin-btn {{checkedIn ? 'done' : ''}}">{{checkedIn ? '已膜拜' : '膜拜'}}</text>
+      </view>
+    </view>
+    <view class="checkin-edit" wx:if="{{isAdmin}}" catchtap="editSlogan">
+      <text class="checkin-edit-text">✏️ 修改词条</text>
     </view>
   </view>
 
@@ -33,11 +63,22 @@
     </view>
   </view>
 
-  <view class="section-header" wx:if="{{inviteCode}}">
-    <text class="section-title">🏰 工会信息</text>
+  <view class="invite-card" wx:if="{{inviteCode}}">
+    <view class="invite-header">
+      <text class="invite-icon">🏰</text>
+      <text class="invite-title">邀请好友加入工会</text>
+    </view>
+    <view class="invite-code-box">
+      <text class="invite-code-label">邀请码</text>
+      <text class="invite-code-value">{{inviteCode}}</text>
+    </view>
+    <view class="invite-btns">
+      <button class="btn-copy-new" bindtap="copyInviteCode">📋 复制邀请码</button>
+      <button class="btn-share-new" open-type="share">📨 发送给好友</button>
+    </view>
   </view>
-  <view class="guild-info" wx:if="{{inviteCode}}">
-    <text class="guild-code">🔑 邀请码：{{inviteCode}}</text>
-    <button size="mini" class="btn-copy" bindtap="copyInviteCode">复制</button>
+
+  <view class="danger-zone">
+    <button class="btn-leave" bindtap="leaveGuild">退出工会</button>
   </view>
 </view>
